@@ -1,6 +1,6 @@
-from django.shortcuts import render_to_response
-from django.http import HttpResponseRedirect
 from django.conf import settings
+from django.http import HttpResponseRedirect
+from django.views.generic.simple import direct_to_template
 
 
 def unsupported(request):
@@ -15,13 +15,12 @@ def unsupported(request):
     else:
         base_template = "badbrowser/base.html"
 
-    context = {
-        "next": request.path,
-        "suggest": suggest,
-        "base_template": base_template
-    }
+    return direct_to_template(request, "badbrowser/unsupported.html", {
+            "next": request.path,
+            "suggest": suggest,
+            "base_template": base_template
+            })
 
-    return render_to_response("badbrowser/unsupported.html", context)
 
 def ignore(request):
     response = HttpResponseRedirect(request.GET["next"] if "next" in request.GET else "/")
