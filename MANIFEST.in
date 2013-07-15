@@ -1,4 +1,5 @@
-graft badbrowser/media
-graft badbrowser/templates
-graft badbrowser/uastrings
-graft badbrowser/locale
+include README.textile
+recursive-include badbrowser/static *
+recursive-include badbrowser/locale *
+recursive-include badbrowser/uastrings *
+recursive-include badbrowser/templates *
