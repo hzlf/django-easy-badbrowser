@@ -7,7 +7,7 @@ import os
 long_description = open(os.path.join(os.path.dirname(__file__), "README.textile")).read()
 
 setup(
-	name="django-badbrowser",
+	name="django-badbrowser-lite",
 	version=VERSION,
 	url="http://github.com/adamcharnock/django-badbrowser",
 	download_url="git@github.com:adamcharnock/django-badbrowser.git",
