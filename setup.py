@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 from setuptools import setup, find_packages
 
-VERSION = "0.1.2" # also in __init__.py
+VERSION = "0.1.3b" # also in __init__.py
 
 import os
 long_description = open(os.path.join(os.path.dirname(__file__), "README.textile")).read()
 
 setup(
-	name="django-badbrowser-lite",
+	name="django-badbrowser",
 	version=VERSION,
 	url="http://github.com/adamcharnock/django-badbrowser",
 	download_url="git@github.com:adamcharnock/django-badbrowser.git",
@@ -33,7 +33,7 @@ setup(
 		"Topic :: Internet :: WWW/HTTP :: Browsers",
 	],
 	install_requires=[
-		"httpagentparser",
+		"httpagentparser==1.2.2",
 	],
 	zip_safe=False,
 	include_package_data=True,
