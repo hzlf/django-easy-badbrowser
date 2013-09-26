@@ -1,10 +1,13 @@
-import httpagentparser
+# -*- coding: utf-8 -*-
+
 from urlparse import urlparse
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
 
+import httpagentparser
 from badbrowser import check_user_agent
+
 
 def is_media_request(request):
     """
@@ -20,6 +23,7 @@ def is_media_request(request):
             return True
     return False 
     
+
 class BrowserSupportDetection(object):
     
     def _user_ignored_warning(self, request):

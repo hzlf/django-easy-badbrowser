@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.views.generic.simple import direct_to_template

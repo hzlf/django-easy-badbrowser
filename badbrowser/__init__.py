@@ -1,7 +1,10 @@
-import httpagentparser
+# -*- coding: utf-8 -*-
+
 from pkg_resources import parse_version
 
-VERSION = "0.1.2" # also in setup.py
+import httpagentparser
+
+VERSION = "1.0.7" # also in setup.py
 
 def check_user_agent(user_agent, requirements):
     if not user_agent:
