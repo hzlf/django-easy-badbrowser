@@ -27,12 +27,15 @@ def is_media_request(request):
 class BrowserSupportDetection(object):
     
     def _user_ignored_warning(self, request):
+
+        print 'try: _user_ignored_warning'
+
         """Has the user forced ignoring the browser warning"""
         return "badbrowser_ignore" in request.COOKIES and request.COOKIES["badbrowser_ignore"]
     
     def process_request(self, request):
         self._clear_cookie = False
-        
+
         if is_media_request(request):
             return None
         
@@ -41,8 +44,13 @@ class BrowserSupportDetection(object):
 
         if not hasattr(settings, "BADBROWSER_REQUIREMENTS"):
             return None # no requirements have been setup
+
+        print 'checking:'
+        print 'request.path: %s' % request.path[-20:]
+        print 'reverse: %s' % reverse("django-badbrowser-ignore")[-20:]
+
         
-        if request.path == reverse("django-badbrowser-ignore"):
+        if request.path[-20:] == reverse("django-badbrowser-ignore")[-20:]:
             # Allow through any requests for the ignore page
             return None
 
@@ -51,15 +59,15 @@ class BrowserSupportDetection(object):
         
         # Set the browser information on the request object
         request.browser = parsed_user_agent
-        
+
         if check_user_agent(parsed_user_agent, settings.BADBROWSER_REQUIREMENTS):
             self._clear_cookie = True
             return None # continue as normal
         else:
             if self._user_ignored_warning(request):
                 return None 
-            
-            from badbrowser.views import unsupported
+
+            from views import unsupported
             return unsupported(request)
     
     def process_response(self, request, response):

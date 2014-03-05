@@ -2,8 +2,17 @@
 
 from django.conf import settings
 from django.http import HttpResponseRedirect
-from django.views.generic.simple import direct_to_template
+from django.template.response import TemplateResponse, SimpleTemplateResponse
 
+
+class UnsupportedBrowser(SimpleTemplateResponse):
+
+    template_name = 'my_template.html'
+
+    def get(self, request, *args, **kwargs):
+        print request
+        context = self.get_context_data(**kwargs)
+        return self.render_to_response(context)
 
 def unsupported(request):
 
@@ -16,13 +25,12 @@ def unsupported(request):
         base_template = settings.BADBROWSER_BASE_TEMPLATE
     else:
         base_template = "badbrowser/base.html"
-
-    return direct_to_template(request, "badbrowser/unsupported.html", {
+    t = TemplateResponse(request, 'badbrowser/unsupported.html', {
             "next": request.path,
             "suggest": suggest,
             "base_template": base_template
             })
-
+    return t.render()
 
 def ignore(request):
     response = HttpResponseRedirect(request.GET["next"] if "next" in request.GET else "/")

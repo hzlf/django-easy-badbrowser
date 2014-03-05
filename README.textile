@@ -8,6 +8,7 @@ To install django-badbrowser:
 # Add @badbrowser.middleware.BrowserSupportDetection@ to the @MIDDLEWARE_CLASSES@ setting
 # Add @badbrowser@ to your @INSTALLED_APPS@ setting
 # Specify the @BADBROWSER_REQUIREMENTS@ setting (see below for details and additional settings)
+# Add @'badbrowser.urls'@ to your @urls.py@
 
 h2. Config options
 

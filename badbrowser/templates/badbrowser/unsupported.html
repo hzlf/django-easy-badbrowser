@@ -1,86 +1,11 @@
-{% extends base_template %}
+{% extends "badbrowser/base.html" %}
 {% load i18n %}
-
-{% block extra_head %}
-<style type="text/css" media="screen">
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, font, img, ins, kbd, q, s, samp,
-small, strike, tt, var,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  font-weight: inherit;
-  font-style: inherit;
-  font-size: 100%;
-  font-family: inherit;
-  vertical-align: baseline;
-}
-
-html {
-  height: 100%;
-}
-
-body {
-  line-height: 1;
-  color: black;
-  background: white;
-  height: 100%;
-  font-family: "Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans", "Bitstream Vera Sans", "Trebuchet MS", Verdana, "Verdana Ref", sans-serif;
-}
-ol, ul {
-  list-style: none;
-}
-
-#browser-unsupported {
-  background-color: #F5F5F5;
-  width: 550px;
-  margin: 0 auto 0 auto;
-  border: 1px solid #EAEAEA;
-  height: 100%;
-}
-#browser_list {
-  text-align: center;
-  height: 120px;
-  margin-top: 2em;
-  margin-bottom: 1em;
-}
-#browser_list li {
-  float: left;
-  width: 100px;
-  height: 100px;
-}
-#wrapper {
-  margin-top: 100px;
-  padding: 10px;
-}
-h1 {
-  font-size: 1.5em;
-  font-family: "Palatino Linotype", Palatino, Palladio, "URW Palladio L", "Book Antiqua", Baskerville, "Bookman Old Style", "Bitstream Charter", "Nimbus Roman No9 L", Garamond, "Apple Garamond", "ITC Garamond Narrow", "New Century Schoolbook", "Century Schoolbook", "Century Schoolbook L", Georgia, serif;
-  margin-bottom: 1em;
-}
-p {
-  margin-bottom: 1em;
-}
-#ignore {
-  font-size: 0.8em;
-  font-style: italic;
-  color: #666;
-  margin-top: 4em;
-}
-</style>
-{% endblock %}
 
 {% block content %}
 <div id="browser-unsupported">
   <div id="wrapper">
     {% block unsupported_message %}
-    <h1>{% trans "Unsupported web browser" %}</h1>
+    <h1>{% trans "Unsupported browser" %}</h1>
     <p>
       {% trans "Thank you much for coming by, but unfortunately we are unable to support your web browser." %}
     </p>
@@ -91,7 +16,7 @@ p {
     {% endblock %}
 
     {% block unsupported_browsers %}
-    <ul id="browser_list">
+    <ul id="browser_list" class="list-unstyled list-inline">
       {% for browser in suggest %}
         {% if browser|lower == "chrome" %}
         <li>
@@ -132,14 +57,14 @@ p {
     {% endblock %}
 
     {% block unsupported_ignore %}
-    <p id="ignore">
-      {% trans "You may" %}
-      <a href="{% url django-badbrowser-ignore %}?next={{ next|urlencode }}">{% trans "ignore this warning" %}</a>
-      {% trans "at your own peril." %}
-    </p>
+    <div class="">
+        <p id="ignore">
+          <a class="btn pull-right_ btn-warning" href="{% url "django-badbrowser-ignore" %}?next={{ next|urlencode }}">{% trans "Ignore this warning and continue!" %}</a>
+        </p>
+    </div>
     {% endblock %}
+
   </div>
 
 </div>
-<!-- test data: unsupported browser -->
 {% endblock %}
