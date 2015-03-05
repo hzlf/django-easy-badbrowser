@@ -45,11 +45,6 @@ class BrowserSupportDetection(object):
         if not hasattr(settings, "BADBROWSER_REQUIREMENTS"):
             return None # no requirements have been setup
 
-        print 'checking:'
-        print 'request.path: %s' % request.path[-20:]
-        print 'reverse: %s' % reverse("django-badbrowser-ignore")[-20:]
-
-        
         if request.path[-20:] == reverse("django-badbrowser-ignore")[-20:]:
             # Allow through any requests for the ignore page
             return None

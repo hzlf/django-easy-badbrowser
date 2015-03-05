@@ -5,7 +5,7 @@ django.fcgi
 runfcgi.pid
 *.swp
 django_badbrowser.egg-info
-
+.idea*
 .bash_history
 .bash_logout
 .bashrc
