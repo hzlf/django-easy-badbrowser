@@ -4,7 +4,7 @@ from pkg_resources import parse_version
 
 import httpagentparser
 
-VERSION = "1.0.7" # also in setup.py
+VERSION = "1.0.8" # also in setup.py
 
 def check_user_agent(user_agent, requirements):
     if not user_agent:

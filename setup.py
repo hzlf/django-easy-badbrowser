@@ -1,7 +1,7 @@
 import os
 from setuptools import setup, find_packages
 
-VERSION = "1.0.7" # also in __init__.py
+VERSION = "1.0.8" # also in __init__.py
 
 README = open(os.path.join(os.path.dirname(__file__), "README.textile")).read()
 
